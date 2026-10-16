@@ -25,3 +25,21 @@ body.dark .signature{filter:invert(1)}
 @media(max-width:940px){.nav-links{gap:12px}.nav-links a{font-size:12px}.signature-nav{width:147px}}
 @media(max-width:850px){.signature-nav{width:174px}.learning-grid{grid-template-columns:1fr 1fr}.hero{min-height:780px}}
 @media(max-width:600px){.signature-nav{width:157px}.hero{padding-top:40px;min-height:720px}.hero-signature{width:min(345px,93%);margin-top:30px}.hero h1{font-size:clamp(67px,14vw,96px);letter-spacing:-.085em}.learning-grid{grid-template-columns:1fr}.learning-card{min-height:230px}.hero-orb{top:370px;right:-190px}}
+
+/* Phase 01: calm, signature-led hero. No second monogram in the hero. */
+.hero { min-height: min(850px, 100svh); padding-top: clamp(95px, 12vh, 145px); padding-bottom: 125px; }
+.hero-signature { width: min(440px, 80%); margin: 12px 0 4px; }
+.hero h1 { font-size: clamp(68px, 10vw, 134px); line-height: 1.02; margin-top: 24px; letter-spacing: -.085em; }
+.hero-description { max-width: 530px; }
+.signature-nav { width: 162px; max-height: 46px; }
+.signature-footer { width: 150px; }
+@media (max-width: 850px) {
+  .signature-nav { width: 145px; }
+  .hero { min-height: 760px; padding-top: 86px; }
+}
+@media (max-width: 600px) {
+  .hero { min-height: 690px; padding-top: 66px; padding-bottom: 110px; }
+  .hero-signature { width: min(315px, 90%); margin-top: 8px; }
+  .hero h1 { font-size: clamp(55px, 12.5vw, 76px); margin-top: 28px; }
+  .signature-nav { width: 139px; }
+}
