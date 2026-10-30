@@ -1,5 +1,5 @@
 'use strict';
-// Replace these placeholders with your own public contact details before publishing.
+
 const PROFILE = {email:'hello@example.com',github:'https://github.com/',linkedin:'https://www.linkedin.com/'};
 const skillSets={
  programming:[['Py','Python','Practicing algorithms & problem-solving'],['J','Java','Learning object-oriented programming'],['DS','Data Structures','Searching, sorting and fundamentals']],
