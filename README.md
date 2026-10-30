@@ -1,30 +1,31 @@
-# Oshini Bimaya — Personal Portfolio (Version 2)
+# Oshini Bimaya — Personal Portfolio (Phase 4)
 
-Apple-inspired, original black-and-white HTML/CSS/JavaScript portfolio using the **exact personal signature logo** supplied by Oshini.
+Apple-inspired, minimalist personal portfolio built with HTML, CSS and vanilla JavaScript. Phase 4 expands the project showcase with MIRA screenshots and a detailed NOVA AI desktop-assistant overview.
 
 ## Run locally
-1. Extract the ZIP.
-2. Open the `oshini-bimaya-portfolio` folder in VS Code.
-3. Open `index.html` in your browser, or use the VS Code Live Server extension. No backend, dependencies or npm are needed.
+1. Extract the ZIP file.
+2. Open the extracted folder in Visual Studio Code.
+3. Open `index.html` with Live Server, or open it directly in a browser.
+4. Keep the folder structure intact so the MIRA screenshots load from `assets/mira/`.
 
-## Included
-- Responsive signature-branded navigation and hero
-- Bento-style introduction, skill tabs and project detail disclosures
-- University/career timeline, learning cards and interactive DevOps roadmap
-- Terminal (`help`, `about`, `skills`, `projects`, `education`, `roadmap`, `contact`, `whoami`, `clear`)
-- Light/dark mode, scroll reveals, mobile navigation, return-to-top button
-- Original supplied logo in `original-logo.png`, transparent crops for light/dark usage
+No npm installation or build step is required.
 
-## Personalize before publishing
-- Replace placeholder contact details in `script.js` in the `PROFILE` constant.
-- Edit project copy, course topics, milestone details and technical skill labels in `index.html` / `script.js`.
-- Only link working GitHub repositories, verified live demos and real certificates.
-- Roadmap checkboxes and dark-mode preferences persist **per browser only** (via localStorage), not globally on your public website.
-- A visitor can independently tick their own roadmap items; these do not represent your actual completion status. For a public portfolio, consider later changing to read-only progress.
-- Add a real downloadable CV once prepared; don't publish personal phone/address or credentials.
+## Phase 4 additions
+- MIRA case study with the user's stated contributions and five supporting screenshots, plus the homepage preview.
+- Public-facing screenshot copies obscure a prefilled email address, QR code and visible student names.
+- NOVA project profile with its stated Python/Gemini API/CustomTkinter/SQLite stack.
+- NOVA's nine capabilities are explicitly labelled as planned, not all completed.
+- Docker is described only as optional future deployment practice.
+- Added an AI & Desktop category to the interactive skills tabs.
+- Updated the interactive terminal with a `nova` command and refreshed `mira` details.
+- Added basic Open Graph metadata.
 
-## Hosting
-Upload all files together to a GitHub Pages repository, enable GitHub Pages under Settings → Pages, and update the social links.
+## Project assets
+- `oshini-bimaya-signature.png` and `favicon.svg` are used by the page.
+- `java-programming-certificate.pdf` is retained from Phase 3.
+- `assets/mira/` contains the MIRA screenshots used in the case study.
 
-## Note on logo
-The supplied image includes the intertwined handwritten monogram and name. The header and hero use a transparent crop made from the original image, not a newly drawn substitute. `original-logo.png` is kept as a source reference.
+## Before publishing
+Update the placeholder email, GitHub and LinkedIn URLs in the `PROFILE` object near the top of `script.js`. Only publish contact details and links you intend to make public.
+
+The MIRA project is described as a university group project. The case study lists only the user's stated contributions. Verify the live link and permissions before publishing.

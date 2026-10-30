@@ -37,6 +37,15 @@ const skillSets = {
         ['WEB', 'Web hosting', 'Experience publishing a web project.'],
         ['>_', 'Linux', 'Currently studying Linux Foundation LFS101.'],
         ['☁', 'Cloud & DevOps', 'Exploring automation, cloud and delivery workflows.']
+    ],
+
+    ai: [
+        ['Py', 'Python', 'Main programming language for the NOVA desktop assistant.'],
+        ['✦', 'Gemini API', 'Exploring AI-powered conversations through an API.'],
+        ['UI', 'CustomTkinter', 'Building a modern desktop interface.'],
+        ['DB', 'SQLite', 'Storing local conversation history.'],
+        ['OS', 'subprocess & webbrowser', 'Practising desktop app launching and website opening.'],
+        ['Docker', 'Docker', 'A possible future deployment and containerisation learning goal.']
     ]
 };
 
@@ -296,7 +305,7 @@ function printTerminalLine(message, prefix = '') {
 
 const terminalCommands = {
     help: [
-        'Commands: help, about, skills, projects, mira, agent,',
+        'Commands: help, about, skills, projects, mira, nova, agent,',
         'learning, certifications, education, roadmap, contact,',
         'whoami, clear'
     ].join(' '),
@@ -308,13 +317,16 @@ const terminalCommands = {
         'Java · Python · HTML · CSS · JavaScript · PHP · Database concepts · GitHub · VS Code · Linux (learning)',
 
     projects:
-        'MIRA — university group project. My contributions include page design, artwork upload and approval workflows, and admin features. Also working on an AI agent.',
+        'MIRA — university group project with my contributions in page design, artwork uploads, approval workflows and admin features. NOVA — a Python-based AI desktop assistant in development.',
 
     mira:
-        'MIRA is a group project. My contributions: homepage design, login page design, artwork-uploading system, artwork approval workflow, admin dashboard and other admin features. Live project: https://mira-nsbm.infinityfreeapp.com/?i=1',
+        'MIRA is a group project. My contributions: homepage and login design, registration interface, artwork-uploading experience, artwork approval workflow, admin dashboard and related admin features. See the MIRA screenshots in the Projects section. Live project: https://mira-nsbm.infinityfreeapp.com/?i=1',
+
+    nova:
+        'NOVA is a Python-based AI desktop assistant in development. Its stack includes Gemini API, CustomTkinter, SQLite, subprocess, webbrowser, and Git/GitHub. Planned capabilities include AI chat, app and website launching, file management, notes, web search, voice commands and conversation memory. Docker is a future practice goal.',
 
     agent:
-        'An AI agent is currently in development. Project purpose, features and technology details will be added when ready to share.',
+        'NOVA — a Python-based AI desktop assistant in development. Type nova for its technology stack and planned capabilities.',
 
     learning:
         'Currently studying Introduction to Linux (LFS101) through the Linux Foundation. Continuing to practise programming and software fundamentals.',

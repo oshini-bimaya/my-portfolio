@@ -4,9 +4,13 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f5f5f7">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Oshini Bimaya — Computer Science Portfolio">
+    <meta property="og:description" content="A personal portfolio documenting Oshini Bimaya's learning journey, projects and exploration of software, AI, Linux and DevOps.">
+    <meta name="twitter:card" content="summary">
     <meta
         name="description"
-        content="Oshini Bimaya — Computer Science undergraduate exploring software, Linux, cloud and DevOps."
+        content="Oshini Bimaya — Computer Science undergraduate exploring software development, AI, Linux, cloud and DevOps through projects and independent learning."
     >
     <title>Oshini Bimaya — Computer Science Portfolio</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml">
@@ -214,6 +218,14 @@
                     aria-selected="false"
                     data-skill="tools"
                 >Tools & Systems</button>
+
+                <button
+                    class="tab"
+                    type="button"
+                    role="tab"
+                    aria-selected="false"
+                    data-skill="ai"
+                >AI & Desktop</button>
             </div>
 
             <div
@@ -230,29 +242,22 @@
                     <span class="eyebrow">03 / SELECTED WORK</span>
                     <h2>Ideas in <span class="soft">the making.</span></h2>
                     <p>
-                        A selection of collaborative work and personal
-                        experiments, with a focus on what I contributed
-                        and what I learned.
+                        A closer look at collaborative work and a personal
+                        desktop-assistant project — with a focus on my own
+                        contributions, the technologies involved and what
+                        I'm learning along the way.
                     </p>
                 </div>
 
-                <div class="projects-grid">
-                    <article class="project-card reveal">
-                        <div class="project-art">
-                            <div class="project-window">
-                                <div class="window-dots">
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                </div>
-                                <strong>MIRA</strong>
-                                <span>Student Arts & Handcraft Showcase</span>
-                                <div class="window-lines">
-                                    <i></i>
-                                    <i></i>
-                                    <i></i>
-                                </div>
-                            </div>
+                <div class="projects-grid projects-grid-phase4">
+                    <article class="project-card project-card-wide reveal">
+                        <div class="project-art project-art-image">
+                            <img
+                                src="assets/mira/mira-homepage.png"
+                                alt="MIRA student arts and handcraft showcase homepage"
+                                loading="lazy"
+                            >
+                            <span class="project-art-caption">MIRA · Student Arts & Handcraft Showcase</span>
                         </div>
 
                         <div class="project-body">
@@ -261,111 +266,186 @@
                                 <span class="project-status">LIVE PROJECT</span>
                             </div>
 
-                            <h3>MIRA — ArtCraft</h3>
+                            <div class="mira-overview-grid">
+                                <div class="mira-summary">
+                                    <h3>MIRA — ArtCraft</h3>
+                                    <p>
+                                        MIRA is a group-developed platform for
+                                        NSBM students to discover, share and
+                                        showcase artwork and handcrafts. This
+                                        case study focuses on the parts I
+                                        contributed to within the wider team
+                                        project.
+                                    </p>
 
-                            <p>
-                                A group-developed student arts and handcraft
-                                showcase platform created as a university
-                                project. My portfolio highlights my own
-                                contributions to the shared system.
-                            </p>
+                                    <div class="contribution-block">
+                                        <span class="contribution-heading">MY CONTRIBUTIONS</span>
+                                        <ul class="contribution-list">
+                                            <li>Designed the homepage and its visual layout.</li>
+                                            <li>Designed the login and account registration pages.</li>
+                                            <li>Worked on the artwork-uploading experience.</li>
+                                            <li>Worked on the artwork review and approval workflow.</li>
+                                            <li>Contributed to the admin dashboard and related admin features.</li>
+                                        </ul>
+                                    </div>
 
-                            <div class="contribution-block">
-                                <span class="contribution-heading">
-                                    MY CONTRIBUTIONS
-                                </span>
-                                <ul class="contribution-list">
-                                    <li>Designed the homepage.</li>
-                                    <li>Designed the login pages.</li>
-                                    <li>Worked on the artwork-uploading system.</li>
-                                    <li>Worked on the artwork approval workflow.</li>
-                                    <li>Worked on the admin dashboard and other admin features.</li>
-                                </ul>
+                                    <div class="tags">
+                                        <span>HTML</span>
+                                        <span>CSS</span>
+                                        <span>PHP</span>
+                                        <span>Database</span>
+                                        <span>Git & GitHub</span>
+                                        <span>VS Code</span>
+                                        <span>Web hosting</span>
+                                    </div>
+
+                                    <div class="project-actions">
+                                        <a
+                                            class="project-link"
+                                            href="https://mira-nsbm.infinityfreeapp.com/?i=1"
+                                            target="_blank"
+                                            rel="noopener noreferrer"
+                                        >Visit live project <span>↗</span></a>
+                                    </div>
+                                </div>
+
+                                <aside class="mira-facts" aria-label="MIRA project details">
+                                    <div>
+                                        <span>PROJECT TYPE</span>
+                                        <strong>University group project</strong>
+                                    </div>
+                                    <div>
+                                        <span>MY FOCUS</span>
+                                        <strong>Interface design & admin workflows</strong>
+                                    </div>
+                                    <div>
+                                        <span>WHAT I PRACTISED</span>
+                                        <strong>Building database-backed web features</strong>
+                                    </div>
+                                </aside>
                             </div>
 
-                            <div class="tags">
-                                <span>HTML</span>
-                                <span>CSS</span>
-                                <span>PHP</span>
-                                <span>Database</span>
-                                <span>GitHub</span>
-                                <span>Web hosting</span>
+                            <div class="mira-gallery-heading">
+                                <div>
+                                    <span class="contribution-heading">PROJECT SCREENSHOTS</span>
+                                    <p>Selected screens from the shared MIRA platform. Select an image to view it at full size.</p>
+                                </div>
+                                <span class="gallery-count">05 SCREENS</span>
                             </div>
 
-                            <div class="project-actions">
-                                <a
-                                    class="project-link"
-                                    href="https://mira-nsbm.infinityfreeapp.com/?i=1"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                >
-                                    Visit live project <span>↗</span>
-                                </a>
+                            <div class="mira-gallery">
+                                <figure class="mira-shot">
+                                    <a href="assets/mira/mira-registration.png" target="_blank" rel="noopener noreferrer" aria-label="Open MIRA account registration screenshot">
+                                        <img src="assets/mira/mira-registration.png" alt="MIRA registration page with viewer and artist account options" loading="lazy">
+                                    </a>
+                                    <figcaption>Account registration</figcaption>
+                                </figure>
+
+                                <figure class="mira-shot">
+                                    <a href="assets/mira/mira-login-redacted.png" target="_blank" rel="noopener noreferrer" aria-label="Open MIRA login screenshot">
+                                        <img src="assets/mira/mira-login-redacted.png" alt="MIRA login page with private details obscured" loading="lazy">
+                                    </a>
+                                    <figcaption>Login interface</figcaption>
+                                </figure>
+
+                                <figure class="mira-shot">
+                                    <a href="assets/mira/mira-artwork-upload.png" target="_blank" rel="noopener noreferrer" aria-label="Open MIRA artwork upload screenshot">
+                                        <img src="assets/mira/mira-artwork-upload.png" alt="MIRA artwork upload form with title, category, description and image fields" loading="lazy">
+                                    </a>
+                                    <figcaption>Artwork upload</figcaption>
+                                </figure>
+
+                                <figure class="mira-shot">
+                                    <a href="assets/mira/mira-admin-dashboard-redacted.png" target="_blank" rel="noopener noreferrer" aria-label="Open MIRA admin dashboard screenshot">
+                                        <img src="assets/mira/mira-admin-dashboard-redacted.png" alt="MIRA admin dashboard showing overview metrics and management tools" loading="lazy">
+                                    </a>
+                                    <figcaption>Admin dashboard</figcaption>
+                                </figure>
+
+                                <figure class="mira-shot">
+                                    <a href="assets/mira/mira-artwork-approvals-redacted.png" target="_blank" rel="noopener noreferrer" aria-label="Open MIRA artwork approval screenshot">
+                                        <img src="assets/mira/mira-artwork-approvals-redacted.png" alt="MIRA artwork submissions page with pending, approve and reject controls" loading="lazy">
+                                    </a>
+                                    <figcaption>Artwork review & approval</figcaption>
+                                </figure>
                             </div>
 
                             <details class="project-details">
-                                <summary>
-                                    What I learned <span>↗</span>
-                                </summary>
+                                <summary>What I learned <span>↗</span></summary>
                                 <p>
-                                    This project gave me practical experience
-                                    working with HTML, CSS and PHP, connecting
-                                    pages to a database, using GitHub and VS Code,
-                                    and working with website hosting. It also
-                                    helped me understand how different parts of
-                                    a web application and its admin workflow fit
-                                    together in a team project.
+                                    Through this group project, I gained practical
+                                    experience with HTML, CSS and PHP, working
+                                    with database-backed pages, using Git and
+                                    GitHub, developing in VS Code and publishing
+                                    a website through hosting. I also learned
+                                    how user-facing pages and admin workflows
+                                    connect within a larger web application.
                                 </p>
                             </details>
                         </div>
                     </article>
 
-                    <article class="project-card reveal">
-                        <div class="project-art project-art-2">
-                            <div class="project-placeholder">
-                                <span>AI</span>
-                                <small>IN DEVELOPMENT</small>
-                            </div>
+                    <article class="project-card project-card-wide nova-card reveal">
+                        <div class="project-art project-art-2 nova-art">
+                            <div class="nova-mark" aria-hidden="true">N<span>OVA</span></div>
+                            <span class="nova-art-caption">A desktop assistant in development</span>
                         </div>
 
                         <div class="project-body">
                             <div class="project-label-row">
                                 <span class="chip">PERSONAL PROJECT</span>
-                                <span class="project-status">IN PROGRESS</span>
+                                <span class="project-status">IN DEVELOPMENT</span>
                             </div>
 
-                            <h3>AI Agent</h3>
+                            <div class="nova-layout">
+                                <div class="nova-main">
+                                    <h3>NOVA — AI Desktop Assistant</h3>
+                                    <p>
+                                        NOVA is a Python-based desktop assistant
+                                        I'm developing to bring AI conversations
+                                        and everyday desktop actions into one
+                                        interface. The project combines a
+                                        Gemini-powered chat experience with
+                                        desktop utilities and a local history
+                                        store.
+                                    </p>
 
-                            <p>
-                                I'm currently working on an AI agent and
-                                exploring how agent-based systems can be
-                                designed and developed. More details will be
-                                added as the project takes shape.
+                                    <div class="contribution-block">
+                                        <span class="contribution-heading">TECHNOLOGY STACK</span>
+                                        <div class="nova-tech-grid">
+                                            <div class="nova-tech"><strong>Python</strong><small>Main programming language</small></div>
+                                            <div class="nova-tech"><strong>Gemini API</strong><small>AI-powered conversations</small></div>
+                                            <div class="nova-tech"><strong>CustomTkinter</strong><small>Modern desktop interface</small></div>
+                                            <div class="nova-tech"><strong>SQLite</strong><small>Conversation history</small></div>
+                                            <div class="nova-tech"><strong>subprocess</strong><small>Launching desktop applications</small></div>
+                                            <div class="nova-tech"><strong>webbrowser</strong><small>Opening websites</small></div>
+                                            <div class="nova-tech"><strong>Git & GitHub</strong><small>Version control</small></div>
+                                            <div class="nova-tech nova-tech-future"><strong>Docker</strong><small>Optional future deployment practice</small></div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <aside class="nova-roadmap">
+                                    <span class="contribution-heading">PLANNED CAPABILITIES</span>
+                                    <ul class="nova-feature-list">
+                                        <li><span>01</span><div><strong>AI chat</strong><small>Ask questions and get explanations.</small></div></li>
+                                        <li><span>02</span><div><strong>Open websites</strong><small>Launch sites such as YouTube.</small></div></li>
+                                        <li><span>03</span><div><strong>Open applications</strong><small>Launch desktop apps such as Notepad.</small></div></li>
+                                        <li><span>04</span><div><strong>File management</strong><small>Create folders and organise files.</small></div></li>
+                                        <li><span>05</span><div><strong>Notes</strong><small>Save and retrieve personal notes.</small></div></li>
+                                        <li><span>06</span><div><strong>Date & time</strong><small>Answer date and time questions.</small></div></li>
+                                        <li><span>07</span><div><strong>Web search</strong><small>Search for information online.</small></div></li>
+                                        <li><span>08</span><div><strong>Voice commands</strong><small>Accept spoken instructions.</small></div></li>
+                                        <li><span>09</span><div><strong>Conversation memory</strong><small>Recall earlier discussions.</small></div></li>
+                                    </ul>
+                                </aside>
+                            </div>
+
+                            <p class="nova-status-note">
+                                These are planned capabilities, not a claim that
+                                every feature is already complete. Docker is a
+                                possible future learning and deployment exercise.
                             </p>
-
-                            <div class="contribution-block">
-                                <span class="contribution-heading">
-                                    CURRENT FOCUS
-                                </span>
-                                <p class="agent-note">
-                                    A work in progress. The agent's purpose,
-                                    capabilities and technology stack will be
-                                    documented when those details are ready
-                                    to share.
-                                </p>
-                            </div>
-
-                            <div class="tags">
-                                <span>AI</span>
-                                <span>Agent development</span>
-                                <span>Learning</span>
-                            </div>
-
-                            <div class="project-actions">
-                                <span class="project-link project-link-muted">
-                                    Currently building <span>↗</span>
-                                </span>
-                            </div>
                         </div>
                     </article>
                 </div>
