@@ -2,14 +2,17 @@
 
 /*
  * Portfolio configuration.
- * Replace these placeholder contact details with your public links
- * before publishing the website.
+ * Optional contact links. Leave email or LinkedIn blank to hide that button.
  */
 const PROFILE = {
-    email: 'hello@example.com',
-    github: 'https://github.com/',
-    linkedin: 'https://www.linkedin.com/'
+    // These details are displayed publicly in the portfolio contact section.
+    email: 'o.bimaya12@icloud.com',
+    github: 'https://github.com/oshini-bimaya',
+    linkedin: 'https://www.linkedin.com/in/oshini-bimaya-403372345/'
 };
+
+// Mark the page as JavaScript-enabled for progressive-enhancement styles.
+document.documentElement.classList.add('js');
 
 /*
  * Skills are grouped to power the interactive category tabs.
@@ -84,17 +87,43 @@ function renderSkills(group) {
 
 renderSkills('programming');
 
-skillTabs.forEach((button) => {
+function activateSkillTab(selectedTab, moveFocus = false) {
+    skillTabs.forEach((tab) => {
+        const isSelected = tab === selectedTab;
+        tab.classList.toggle('active', isSelected);
+        tab.setAttribute('aria-selected', String(isSelected));
+        tab.setAttribute('tabindex', isSelected ? '0' : '-1');
+    });
+
+    renderSkills(selectedTab.dataset.skill);
+
+    if (moveFocus) {
+        selectedTab.focus();
+    }
+}
+
+skillTabs.forEach((button, index) => {
     button.addEventListener('click', () => {
-        skillTabs.forEach((tab) => {
-            tab.classList.remove('active');
-            tab.setAttribute('aria-selected', 'false');
-        });
+        activateSkillTab(button);
+    });
 
-        button.classList.add('active');
-        button.setAttribute('aria-selected', 'true');
+    button.addEventListener('keydown', (event) => {
+        let nextIndex = index;
 
-        renderSkills(button.dataset.skill);
+        if (event.key === 'ArrowRight') {
+            nextIndex = (index + 1) % skillTabs.length;
+        } else if (event.key === 'ArrowLeft') {
+            nextIndex = (index - 1 + skillTabs.length) % skillTabs.length;
+        } else if (event.key === 'Home') {
+            nextIndex = 0;
+        } else if (event.key === 'End') {
+            nextIndex = skillTabs.length - 1;
+        } else {
+            return;
+        }
+
+        event.preventDefault();
+        activateSkillTab(skillTabs[nextIndex], true);
     });
 });
 
@@ -121,6 +150,8 @@ function updateThemeButton() {
         'aria-label',
         darkModeEnabled ? 'Switch to light mode' : 'Switch to dark mode'
     );
+    themeButton.setAttribute('aria-pressed', String(darkModeEnabled));
+    themeButton.title = darkModeEnabled ? 'Switch to light mode' : 'Switch to dark mode';
 }
 
 updateThemeButton();
@@ -148,6 +179,7 @@ menuButton?.addEventListener('click', () => {
     const menuIsOpen = navLinks.classList.toggle('open');
 
     menuButton.setAttribute('aria-expanded', String(menuIsOpen));
+    menuButton.setAttribute('aria-label', menuIsOpen ? 'Close menu' : 'Open menu');
     menuButton.textContent = menuIsOpen ? '✕' : '☰';
 });
 
@@ -159,8 +191,18 @@ navLinks?.querySelectorAll('a').forEach((link) => {
 
         if (menuButton) {
             menuButton.textContent = '☰';
+            menuButton.setAttribute('aria-label', 'Open menu');
         }
     });
+});
+
+menuButton?.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && navLinks?.classList.contains('open')) {
+        navLinks.classList.remove('open');
+        menuButton.setAttribute('aria-expanded', 'false');
+        menuButton.setAttribute('aria-label', 'Open menu');
+        menuButton.textContent = '☰';
+    }
 });
 
 /*
@@ -341,7 +383,7 @@ const terminalCommands = {
         'Linux → Networking → Git & GitHub → Bash scripting → Docker → CI/CD & Cloud',
 
     contact:
-        'See the Contact section for email, GitHub and LinkedIn links.',
+        'See the Contact section for the GitHub repository. Email and LinkedIn links appear when configured.',
 
     whoami:
         'A curious learner building practical skills and exploring a future in cloud and DevOps.'
@@ -377,7 +419,12 @@ const backTopButton = document.querySelector('#backTop');
 window.addEventListener(
     'scroll',
     () => {
-        backTopButton?.classList.toggle('show', window.scrollY > 550);
+        if (backTopButton) {
+            const isVisible = window.scrollY > 550;
+            backTopButton.classList.toggle('show', isVisible);
+            backTopButton.setAttribute('aria-hidden', String(!isVisible));
+            backTopButton.tabIndex = isVisible ? 0 : -1;
+        }
     },
     { passive: true }
 );
@@ -426,7 +473,12 @@ const linkedinLink = document.querySelector('#linkedinLink');
 const yearElement = document.querySelector('#year');
 
 if (emailLink) {
-    emailLink.href = `mailto:${PROFILE.email}`;
+    const hasEmail = Boolean(PROFILE.email.trim());
+    emailLink.hidden = !hasEmail;
+
+    if (hasEmail) {
+        emailLink.href = `mailto:${PROFILE.email.trim()}`;
+    }
 }
 
 if (githubLink) {
@@ -434,7 +486,12 @@ if (githubLink) {
 }
 
 if (linkedinLink) {
-    linkedinLink.href = PROFILE.linkedin;
+    const hasLinkedIn = Boolean(PROFILE.linkedin.trim());
+    linkedinLink.hidden = !hasLinkedIn;
+
+    if (hasLinkedIn) {
+        linkedinLink.href = PROFILE.linkedin;
+    }
 }
 
 if (yearElement) {

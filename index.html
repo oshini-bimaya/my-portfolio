@@ -4,10 +4,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="theme-color" content="#f5f5f7">
+    <meta name="color-scheme" content="light dark">
+    <meta name="robots" content="index, follow">
     <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Oshini Bimaya Portfolio">
     <meta property="og:title" content="Oshini Bimaya — Computer Science Portfolio">
     <meta property="og:description" content="A personal portfolio documenting Oshini Bimaya's learning journey, projects and exploration of software, AI, Linux and DevOps.">
     <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Oshini Bimaya — Computer Science Portfolio">
+    <meta name="twitter:description" content="Projects, skills and a learning journey in software development, AI, Linux and DevOps.">
     <meta
         name="description"
         content="Oshini Bimaya — Computer Science undergraduate exploring software development, AI, Linux, cloud and DevOps through projects and independent learning."
@@ -18,6 +23,7 @@
     <script src="script.js" defer></script>
 </head>
 <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <header class="header">
         <nav class="nav wrap" aria-label="Main navigation">
             <a href="#home" class="brand" aria-label="Oshini Bimaya — home">
@@ -59,7 +65,7 @@
         </nav>
     </header>
 
-    <main>
+    <main id="main-content">
         <section id="home" class="hero wrap">
             <div class="overline reveal">
                 <span class="pulse"></span>
@@ -201,6 +207,8 @@
                     role="tab"
                     aria-selected="true"
                     data-skill="programming"
+                    aria-controls="skillsGrid"
+                    tabindex="0"
                 >Programming</button>
 
                 <button
@@ -209,6 +217,8 @@
                     role="tab"
                     aria-selected="false"
                     data-skill="web"
+                    aria-controls="skillsGrid"
+                    tabindex="-1"
                 >Web & Database</button>
 
                 <button
@@ -217,6 +227,8 @@
                     role="tab"
                     aria-selected="false"
                     data-skill="tools"
+                    aria-controls="skillsGrid"
+                    tabindex="-1"
                 >Tools & Systems</button>
 
                 <button
@@ -225,6 +237,8 @@
                     role="tab"
                     aria-selected="false"
                     data-skill="ai"
+                    aria-controls="skillsGrid"
+                    tabindex="-1"
                 >AI & Desktop</button>
             </div>
 
@@ -233,6 +247,8 @@
                 class="skills-grid"
                 aria-live="polite"
                 aria-label="Selected skills"
+                role="tabpanel"
+                tabindex="0"
             ></div>
         </section>
 
@@ -680,7 +696,7 @@
                 </p>
 
                 <div class="contact-actions reveal">
-                    <a class="button white" id="emailLink" href="mailto:hello@example.com">
+                    <a class="button white" id="emailLink" href="#contact" hidden>
                         Send an email ↗
                     </a>
                     <a
@@ -693,7 +709,8 @@
                     <a
                         class="button outline-white"
                         id="linkedinLink"
-                        href="https://www.linkedin.com/"
+                        href="#contact"
+                        hidden
                         target="_blank"
                         rel="noopener noreferrer"
                     >LinkedIn ↗</a>
@@ -716,7 +733,7 @@
         </div>
     </footer>
 
-    <button class="back-top" id="backTop" type="button" aria-label="Back to top">
+    <button class="back-top" id="backTop" type="button" aria-label="Back to top" aria-hidden="true" tabindex="-1">
         ↑
     </button>
 </body>
