@@ -1,27 +1,430 @@
 'use strict';
 
-const PROFILE = {email:'hello@example.com',github:'https://github.com/',linkedin:'https://www.linkedin.com/'};
-const skillSets={
- programming:[['Py','Python','Practicing algorithms & problem-solving'],['J','Java','Learning object-oriented programming'],['DS','Data Structures','Searching, sorting and fundamentals']],
- web:[['HTML','HTML & CSS','Building responsive websites'],['JS','JavaScript','Adding interactions to the web'],['SQL','PHP & MySQL','Practicing database-backed applications']],
- tools:[['Git','Git & GitHub','Version control fundamentals'],['>_','Linux','Learning the command line'],['☁','Cloud & DevOps','Exploring future specialization']]
+/*
+ * Portfolio configuration.
+ * Replace these placeholder contact details with your public links
+ * before publishing the website.
+ */
+const PROFILE = {
+    email: 'hello@example.com',
+    github: 'https://github.com/',
+    linkedin: 'https://www.linkedin.com/'
 };
-const skillGrid=document.querySelector('#skillsGrid');
-function renderSkills(group){skillGrid.replaceChildren();skillSets[group].forEach(([symbol,name,description])=>{const box=document.createElement('div');box.className='skill';const heading=document.createElement('span');heading.className='symbol';heading.textContent=symbol;const detail=document.createElement('div');const strong=document.createElement('strong');strong.textContent=name;const small=document.createElement('small');small.style.display='block';small.style.marginTop='6px';small.textContent=description;detail.append(strong,small);box.append(heading,detail);skillGrid.append(box);});}
+
+/*
+ * Skills are grouped to power the interactive category tabs.
+ * Descriptions intentionally describe learning and practical exposure,
+ * rather than suggesting expert-level proficiency.
+ */
+const skillSets = {
+    programming: [
+        ['J', 'Java', 'Completed Java Programming for Beginners.'],
+        ['Py', 'Python', 'Practising programming and problem-solving.'],
+        ['DS', 'Data Structures', 'Learning searching, sorting and fundamentals.']
+    ],
+
+    web: [
+        ['HTML', 'HTML', 'Creating the structure of web pages.'],
+        ['CSS', 'CSS', 'Styling responsive and user-friendly interfaces.'],
+        ['JS', 'JavaScript', 'Adding interactive behaviour to websites.'],
+        ['PHP', 'PHP', 'Practical experience through the MIRA group project.'],
+        ['SQL', 'Database concepts', 'Working with database-backed web applications.']
+    ],
+
+    tools: [
+        ['Git', 'Git & GitHub', 'Version control and collaborative project work.'],
+        ['VS', 'Visual Studio Code', 'Writing, organising and testing code.'],
+        ['WEB', 'Web hosting', 'Experience publishing a web project.'],
+        ['>_', 'Linux', 'Currently studying Linux Foundation LFS101.'],
+        ['☁', 'Cloud & DevOps', 'Exploring automation, cloud and delivery workflows.']
+    ]
+};
+
+const skillGrid = document.querySelector('#skillsGrid');
+const skillTabs = document.querySelectorAll('.tab');
+
+/* Build the skill cards safely using textContent. */
+function renderSkills(group) {
+    if (!skillGrid || !skillSets[group]) {
+        return;
+    }
+
+    skillGrid.replaceChildren();
+
+    skillSets[group].forEach(([symbol, name, description]) => {
+        const card = document.createElement('article');
+        card.className = 'skill';
+
+        const symbolElement = document.createElement('span');
+        symbolElement.className = 'symbol';
+        symbolElement.textContent = symbol;
+
+        const detail = document.createElement('div');
+
+        const title = document.createElement('strong');
+        title.textContent = name;
+
+        const summary = document.createElement('small');
+        summary.textContent = description;
+
+        detail.append(title, summary);
+        card.append(symbolElement, detail);
+        skillGrid.append(card);
+    });
+}
+
 renderSkills('programming');
-document.querySelectorAll('.tab').forEach(btn=>btn.addEventListener('click',()=>{document.querySelectorAll('.tab').forEach(t=>{t.classList.remove('active');t.setAttribute('aria-selected','false')});btn.classList.add('active');btn.setAttribute('aria-selected','true');renderSkills(btn.dataset.skill)}));
-const themeButton=document.querySelector('#themeToggle');
-try{if(localStorage.getItem('oshini-theme')==='dark')document.body.classList.add('dark')}catch{}
-function updateTheme(){themeButton.textContent=document.body.classList.contains('dark')?'☀':'◐';themeButton.setAttribute('aria-label',document.body.classList.contains('dark')?'Switch to light mode':'Switch to dark mode')}
-updateTheme();themeButton.addEventListener('click',()=>{document.body.classList.toggle('dark');updateTheme();try{localStorage.setItem('oshini-theme',document.body.classList.contains('dark')?'dark':'light')}catch{}});
-const menuButton=document.querySelector('#menuToggle'),navLinks=document.querySelector('#navLinks');menuButton.addEventListener('click',()=>{const open=navLinks.classList.toggle('open');menuButton.setAttribute('aria-expanded',String(open));menuButton.textContent=open?'✕':'☰'});navLinks.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{navLinks.classList.remove('open');menuButton.setAttribute('aria-expanded','false');menuButton.textContent='☰'}));
-const roadmap=[['Linux basics','Shell, permissions and everyday commands'],['Networking','Protocols, DNS, IP addressing and fundamentals'],['Git & GitHub','Version control and collaborative workflows'],['Bash scripting','Automating small repetitive tasks'],['Docker','Containers, images and local deployments'],['CI/CD & Cloud','Pipelines, cloud infrastructure and delivery']];
-const roadmapGrid=document.querySelector('#roadmapGrid');let completed=[];try{const stored=JSON.parse(localStorage.getItem('oshini-roadmap')||'[]');if(Array.isArray(stored))completed=stored.filter(v=>Number.isInteger(v)&&v>=0&&v<roadmap.length)}catch{}
-function updateRoadmap(){document.querySelector('#progressLabel').textContent=`${completed.length} / ${roadmap.length}`;document.querySelector('#progressBar').style.width=`${completed.length/roadmap.length*100}%`;try{localStorage.setItem('oshini-roadmap',JSON.stringify(completed))}catch{}}
-roadmap.forEach(([name,detail],index)=>{const label=document.createElement('label');label.className='roadmap-item';const checkbox=document.createElement('input');checkbox.type='checkbox';checkbox.checked=completed.includes(index);const text=document.createElement('div');const title=document.createElement('strong');title.textContent=name;const sub=document.createElement('small');sub.style.display='block';sub.style.marginTop='8px';sub.textContent=detail;text.append(title,sub);label.append(checkbox,text);label.classList.toggle('done',checkbox.checked);checkbox.addEventListener('change',()=>{completed=checkbox.checked?[...new Set([...completed,index])]:completed.filter(x=>x!==index);label.classList.toggle('done',checkbox.checked);updateRoadmap()});roadmapGrid.append(label)});updateRoadmap();
-const output=document.querySelector('#terminalOutput');function printLine(message,prefix=''){const p=document.createElement('p');p.textContent=prefix+message;output.append(p);output.scrollTop=output.scrollHeight}
-const commands={help:'Commands: help, about, skills, projects, education, roadmap, contact, whoami, clear',about:'Oshini Bimaya — Computer Science undergraduate, curious about software and cloud technologies.',skills:'Python · Java · HTML · CSS · JavaScript · PHP · SQL · Git · Linux (learning)',projects:'MIRA — university arts showcase; more projects will be added as they are completed.',education:'BSc (Hons) Computer Science · NSBM Green University · Year 1 Semester 2',roadmap:'Linux → Networking → Git → Bash → Docker → CI/CD & Cloud',contact:'See the Contact section below for GitHub, LinkedIn and email.',whoami:'A curious learner building toward a career in DevOps.'};
-document.querySelector('#terminalForm').addEventListener('submit',e=>{e.preventDefault();const input=document.querySelector('#terminalInput');const command=input.value.trim().toLowerCase();if(!command)return;input.value='';if(command==='clear'){output.replaceChildren();return}printLine(command,'visitor@oshini:~$ ');printLine(commands[command]??`Command not found: ${command}. Type help to see options.`)});
-const backTop=document.querySelector('#backTop');window.addEventListener('scroll',()=>backTop.classList.toggle('show',window.scrollY>550),{passive:true});backTop.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
-const reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;if(reduced||!('IntersectionObserver'in window)){document.querySelectorAll('.reveal').forEach(el=>el.classList.add('visible'))}else{const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('visible');observer.unobserve(entry.target)}}),{threshold:.09});document.querySelectorAll('.reveal').forEach(el=>observer.observe(el))}
-document.querySelector('#emailLink').href=`mailto:${PROFILE.email}`;document.querySelector('#githubLink').href=PROFILE.github;document.querySelector('#linkedinLink').href=PROFILE.linkedin;document.querySelector('#year').textContent=new Date().getFullYear();
+
+skillTabs.forEach((button) => {
+    button.addEventListener('click', () => {
+        skillTabs.forEach((tab) => {
+            tab.classList.remove('active');
+            tab.setAttribute('aria-selected', 'false');
+        });
+
+        button.classList.add('active');
+        button.setAttribute('aria-selected', 'true');
+
+        renderSkills(button.dataset.skill);
+    });
+});
+
+/* Dark mode: remember the visitor's choice on this device. */
+const themeButton = document.querySelector('#themeToggle');
+
+try {
+    if (localStorage.getItem('oshini-theme') === 'dark') {
+        document.body.classList.add('dark');
+    }
+} catch (error) {
+    // The page still works if browser storage is unavailable.
+}
+
+function updateThemeButton() {
+    if (!themeButton) {
+        return;
+    }
+
+    const darkModeEnabled = document.body.classList.contains('dark');
+
+    themeButton.textContent = darkModeEnabled ? '☀' : '◐';
+    themeButton.setAttribute(
+        'aria-label',
+        darkModeEnabled ? 'Switch to light mode' : 'Switch to dark mode'
+    );
+}
+
+updateThemeButton();
+
+themeButton?.addEventListener('click', () => {
+    document.body.classList.toggle('dark');
+    updateThemeButton();
+
+    try {
+        const selectedTheme = document.body.classList.contains('dark')
+            ? 'dark'
+            : 'light';
+
+        localStorage.setItem('oshini-theme', selectedTheme);
+    } catch (error) {
+        // Theme switching still works for the current page session.
+    }
+});
+
+/* Mobile navigation menu. */
+const menuButton = document.querySelector('#menuToggle');
+const navLinks = document.querySelector('#navLinks');
+
+menuButton?.addEventListener('click', () => {
+    const menuIsOpen = navLinks.classList.toggle('open');
+
+    menuButton.setAttribute('aria-expanded', String(menuIsOpen));
+    menuButton.textContent = menuIsOpen ? '✕' : '☰';
+});
+
+navLinks?.querySelectorAll('a').forEach((link) => {
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('open');
+
+        menuButton?.setAttribute('aria-expanded', 'false');
+
+        if (menuButton) {
+            menuButton.textContent = '☰';
+        }
+    });
+});
+
+/*
+ * Learning roadmap.
+ * Visitors can tick completed topics. Their selections are stored locally
+ * in their own browser and are not sent to a server.
+ */
+const roadmap = [
+    [
+        'Linux foundations · LFS101',
+        'Currently studying Linux concepts and command-line basics.'
+    ],
+    [
+        'Networking',
+        'Protocols, DNS, IP addressing and networking fundamentals.'
+    ],
+    [
+        'Git & GitHub',
+        'Version control and collaborative development workflows.'
+    ],
+    [
+        'Bash scripting',
+        'Automating small, repetitive command-line tasks.'
+    ],
+    [
+        'Docker',
+        'Understanding containers, images and local deployments.'
+    ],
+    [
+        'CI/CD & Cloud',
+        'Pipelines, cloud infrastructure and software delivery.'
+    ]
+];
+
+const roadmapGrid = document.querySelector('#roadmapGrid');
+const progressLabel = document.querySelector('#progressLabel');
+const progressBar = document.querySelector('#progressBar');
+
+let completedRoadmapItems = [];
+
+try {
+    const savedItems = JSON.parse(
+        localStorage.getItem('oshini-roadmap') || '[]'
+    );
+
+    if (Array.isArray(savedItems)) {
+        completedRoadmapItems = savedItems.filter((value) => (
+            Number.isInteger(value) &&
+            value >= 0 &&
+            value < roadmap.length
+        ));
+    }
+} catch (error) {
+    completedRoadmapItems = [];
+}
+
+function updateRoadmapProgress() {
+    const completedCount = completedRoadmapItems.length;
+    const totalCount = roadmap.length;
+    const percentage = (completedCount / totalCount) * 100;
+
+    if (progressLabel) {
+        progressLabel.textContent = `${completedCount} / ${totalCount}`;
+    }
+
+    if (progressBar) {
+        progressBar.style.width = `${percentage}%`;
+    }
+
+    try {
+        localStorage.setItem(
+            'oshini-roadmap',
+            JSON.stringify(completedRoadmapItems)
+        );
+    } catch (error) {
+        // The checklist remains usable even without local storage.
+    }
+}
+
+roadmap.forEach(([name, description], index) => {
+    if (!roadmapGrid) {
+        return;
+    }
+
+    const item = document.createElement('label');
+    item.className = 'roadmap-item';
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.checked = completedRoadmapItems.includes(index);
+    checkbox.setAttribute('aria-label', `Mark ${name} as completed`);
+
+    const textContainer = document.createElement('div');
+
+    const title = document.createElement('strong');
+    title.textContent = name;
+
+    const detail = document.createElement('small');
+    detail.textContent = description;
+
+    textContainer.append(title, detail);
+    item.append(checkbox, textContainer);
+
+    item.classList.toggle('done', checkbox.checked);
+
+    checkbox.addEventListener('change', () => {
+        if (checkbox.checked) {
+            completedRoadmapItems = [
+                ...new Set([...completedRoadmapItems, index])
+            ];
+        } else {
+            completedRoadmapItems = completedRoadmapItems.filter(
+                (itemIndex) => itemIndex !== index
+            );
+        }
+
+        item.classList.toggle('done', checkbox.checked);
+        updateRoadmapProgress();
+    });
+
+    roadmapGrid.append(item);
+});
+
+updateRoadmapProgress();
+
+/* Interactive terminal content. */
+const terminalOutput = document.querySelector('#terminalOutput');
+const terminalForm = document.querySelector('#terminalForm');
+const terminalInput = document.querySelector('#terminalInput');
+
+function printTerminalLine(message, prefix = '') {
+    if (!terminalOutput) {
+        return;
+    }
+
+    const paragraph = document.createElement('p');
+    paragraph.textContent = `${prefix}${message}`;
+
+    terminalOutput.append(paragraph);
+    terminalOutput.scrollTop = terminalOutput.scrollHeight;
+}
+
+const terminalCommands = {
+    help: [
+        'Commands: help, about, skills, projects, mira, agent,',
+        'learning, certifications, education, roadmap, contact,',
+        'whoami, clear'
+    ].join(' '),
+
+    about:
+        'Oshini Bimaya — Computer Science undergraduate exploring software, Linux, cloud and DevOps.',
+
+    skills:
+        'Java · Python · HTML · CSS · JavaScript · PHP · Database concepts · GitHub · VS Code · Linux (learning)',
+
+    projects:
+        'MIRA — university group project. My contributions include page design, artwork upload and approval workflows, and admin features. Also working on an AI agent.',
+
+    mira:
+        'MIRA is a group project. My contributions: homepage design, login page design, artwork-uploading system, artwork approval workflow, admin dashboard and other admin features. Live project: https://mira-nsbm.infinityfreeapp.com/?i=1',
+
+    agent:
+        'An AI agent is currently in development. Project purpose, features and technology details will be added when ready to share.',
+
+    learning:
+        'Currently studying Introduction to Linux (LFS101) through the Linux Foundation. Continuing to practise programming and software fundamentals.',
+
+    certifications:
+        'Completed: Java Programming for Beginners — Simplilearn, 17 October 2026. Open the Learning section to view the certificate.',
+
+    education:
+        'BSc (Hons) Computer Science · NSBM Green University · Sri Lanka',
+
+    roadmap:
+        'Linux → Networking → Git & GitHub → Bash scripting → Docker → CI/CD & Cloud',
+
+    contact:
+        'See the Contact section for email, GitHub and LinkedIn links.',
+
+    whoami:
+        'A curious learner building practical skills and exploring a future in cloud and DevOps.'
+};
+
+terminalForm?.addEventListener('submit', (event) => {
+    event.preventDefault();
+
+    const command = terminalInput.value.trim().toLowerCase();
+
+    if (!command) {
+        return;
+    }
+
+    terminalInput.value = '';
+
+    if (command === 'clear') {
+        terminalOutput.replaceChildren();
+        return;
+    }
+
+    printTerminalLine(command, 'visitor@oshini:~$ ');
+
+    const response = terminalCommands[command] ||
+        `Command not found: ${command}. Type help to see available commands.`;
+
+    printTerminalLine(response);
+});
+
+/* Back-to-top button. */
+const backTopButton = document.querySelector('#backTop');
+
+window.addEventListener(
+    'scroll',
+    () => {
+        backTopButton?.classList.toggle('show', window.scrollY > 550);
+    },
+    { passive: true }
+);
+
+backTopButton?.addEventListener('click', () => {
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+/* Reveal elements as they enter the viewport. */
+const prefersReducedMotion = window.matchMedia(
+    '(prefers-reduced-motion: reduce)'
+).matches;
+
+if (
+    prefersReducedMotion ||
+    !('IntersectionObserver' in window)
+) {
+    document.querySelectorAll('.reveal').forEach((element) => {
+        element.classList.add('visible');
+    });
+} else {
+    const revealObserver = new IntersectionObserver(
+        (entries, observer) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    observer.unobserve(entry.target);
+                }
+            });
+        },
+        { threshold: 0.09 }
+    );
+
+    document.querySelectorAll('.reveal').forEach((element) => {
+        revealObserver.observe(element);
+    });
+}
+
+/* Apply the configured contact links. */
+const emailLink = document.querySelector('#emailLink');
+const githubLink = document.querySelector('#githubLink');
+const linkedinLink = document.querySelector('#linkedinLink');
+const yearElement = document.querySelector('#year');
+
+if (emailLink) {
+    emailLink.href = `mailto:${PROFILE.email}`;
+}
+
+if (githubLink) {
+    githubLink.href = PROFILE.github;
+}
+
+if (linkedinLink) {
+    linkedinLink.href = PROFILE.linkedin;
+}
+
+if (yearElement) {
+    yearElement.textContent = new Date().getFullYear();
+}
